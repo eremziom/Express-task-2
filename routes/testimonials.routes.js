@@ -7,17 +7,17 @@ router.route('/testimonials').get((req, res) => {
   res.json(db.testimonials);
 });
 
+router.route('/testimonials/random').get((req, res) => { //endpoint /testimonials/random nie działa...
+  const randomPost = Math.floor(Math.random() * db.testimonials.length);
+  res.json(db.testimonials[randomPost]);
+});
+
 router.route('/testimonials/:id').get((req, res) => {
   for(let post of db.testimonials){
     if(post.id == req.params.id){
       res.json(post);
     };
   };
-});
-
-router.route('/post/random').get((req, res) => { //endpoint /testimonials/random nie działa...
-  const randomPost = Math.floor(Math.random() * db.testimonials.length);
-  res.json(db.testimonials[randomPost]);
 });
 
 router.route('/testimonials').post((req, res) => {
