@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "npx nodemon server.js",
-    "build": "cd client && yarn install && yarn build"
+    "build": "yarn install && cd client && yarn install && yarn build"
   },
   "repository": {
     "type": "git",
