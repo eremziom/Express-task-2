@@ -9,14 +9,13 @@ class SeatChooser extends React.Component {
   componentDidMount() {
     this.socket = io( 'http://localhost:8000' );
     
-    const { loadSeats, loadSeatsData } = this.props;
-    this.socket.on('seatsUpdated', (seats) => {loadSeatsData(seats)})
+    const { loadSeats } = this.props;
+    this.socket.on('seatsUpdated', (seats) => this.props.loadSeatsData(seats));
     loadSeats();
   }
 
   isTaken = (seatId) => {
     const { seats, chosenDay } = this.props;
-
     return (seats.some(item => (item.seat === seatId && item.day === chosenDay)));
   }
 
@@ -29,10 +28,45 @@ class SeatChooser extends React.Component {
     else return <Button key={seatId} color="primary" className="seats__seat" outline onClick={(e) => updateSeat(e, seatId)}>{seatId}</Button>;
   }
 
+  countSeats = () => {
+    const { chosenDay, seats } = this.props;
+    const dayArray = [];
+    console.log(chosenDay, seats)
+    switch (chosenDay){
+      case 1: console.log('day: 1');
+      for(let seat of seats){
+        if(seat.day === 1){
+          dayArray.push(seat)
+        }
+      }
+      console.log('ilosc zajetych miejsc: ', dayArray.length)
+      break;
+      case 2: console.log('day: 2');
+      for(let seat of seats){
+        if(seat.day === 2){
+          dayArray.push(seat)
+        }
+      }
+      console.log('ilosc zajetych miejsc: ', dayArray.length)
+      break;
+      case 3: console.log('day: 3');
+      for(let seat of seats){
+        if(seat.day === 3){
+          dayArray.push(seat)
+        }
+      }
+      console.log('ilosc zajetych miejsc: ', dayArray.length)
+      break;
+    }
+    return 50 - dayArray.length
+  }
+
   render() {
 
-    const { prepareSeat } = this;
+    const { prepareSeat, countSeats } = this;
     const { requests } = this.props;
+
+    console.log('!!!!', this.props.chosenDay, this.props.chosenSeat)
 
     return (
       <div>
@@ -42,6 +76,7 @@ class SeatChooser extends React.Component {
         { (requests['LOAD_SEATS'] && requests['LOAD_SEATS'].success) && <div className="seats">{[...Array(50)].map((x, i) => prepareSeat(i+1) )}</div>}
         { (requests['LOAD_SEATS'] && requests['LOAD_SEATS'].pending) && <Progress animated color="primary" value={50} /> }
         { (requests['LOAD_SEATS'] && requests['LOAD_SEATS'].error) && <Alert color="warning">Couldn't load seats...</Alert> }
+        <h5>Free Seats: {countSeats()}/50</h5>
       </div>
     )
   };
