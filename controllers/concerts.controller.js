@@ -24,6 +24,7 @@ exports.postSingle = async (req, res) => {
   try{
     const { performer, genre, price, day, image } = req.body;
     const newConcert = new Concert({ performer: performer, genre: genre, price: price, day: day, image: image });
+    
     await newConcert.save();
     res.json({ message: 'OK' });
   }
