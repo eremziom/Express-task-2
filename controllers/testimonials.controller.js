@@ -9,6 +9,19 @@ exports.getAll = async (req, res) => {
   }
 }
 
+exports.getRandom = async (req, res) => {
+  try{
+    const count = await Testimonial.countDocuments();
+    const rand = Math.floor(Math.random() * count);
+    const test = await Testimonial.findOne().skip(rand);
+    if(!test) res.status(404).json({message: 'Not Found'});
+    else res.json(test);
+  }
+  catch(err){
+    res.status(500).json(err);
+  }
+}
+
 exports.getSingle = async (req, res) => {
   try{
     const test = await Testimonial.findById(req.params.id);
