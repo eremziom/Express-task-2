@@ -25,7 +25,7 @@
     "uuid": "^3.3.3"
   },
   "dependencies": {
-    "mongoose": "5.7.1",
+    "mongoose": "5.7.5",
     "socket.io": "^2.3.0"
   }
 }
