@@ -36,7 +36,7 @@ app.use((req, res) => {
   res.status(404).send({message: '404 not found...'});
 })
 
-mongoose.connect('mongodb+srv://Erem:mongoDBhaslo@clustererem-2ilyb.mongodb.net/NewWaveDB', { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect(`mongodb+srv://Erem:${process.env.HEROKU_PASS}@clustererem-2ilyb.mongodb.net/NewWaveDB`, { useNewUrlParser: true, useUnifiedTopology: true });
 const db = mongoose.connection;
 
 db.once('open', () => {
