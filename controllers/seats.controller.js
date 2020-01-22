@@ -3,7 +3,7 @@ const Seat = require('..//models/seat.model');
 exports.getAll = async (req, res) => {
   try {
     res.json(await Seat.find());
-    req.io.emit('seatsUpdated', db.seats);    
+    req.io.emit('seatsUpdated', await Seat.find());    
   }
   catch(err){
     res.status(500).json(err);
@@ -30,7 +30,7 @@ exports.postSingle = async (req, res) => {
     const newSeat = new Seat({day: day, seat: seat, client: client, email: email});
     await newSeat.save()
     res.json({message: 'OK'});
-    req.io.emit('seatsUpdated', db.seats);
+    req.io.emit('seatsUpdated', await Seat.find());
   }
 }
   catch(err){
