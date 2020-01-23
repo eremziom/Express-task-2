@@ -9,7 +9,7 @@
   },
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "snyk test",
     "start": "npx nodemon server.js",
     "build": "yarn install && cd client && yarn install && yarn build"
   },
@@ -23,11 +23,15 @@
     "url": "https://github.com/eremziom/Express-task-2/issues"
   },
   "homepage": "https://github.com/eremziom/Express-task-2#readme",
-  "devDependencies": {},
+  "devDependencies": {
+    "snyk": "^1.279.1"
+  },
   "dependencies": {
     "cors": "^2.8.5",
     "express": "^4.17.1",
-    "mongoose": "5.7.1",
+    "helmet": "3.21.1",
+    "mongo-sanitize": "1.0.1",
+    "mongoose": "5.7.5",
     "nodemon": "^2.0.2",
     "socket.io": "^2.3.0",
     "uuid": "^3.4.0"

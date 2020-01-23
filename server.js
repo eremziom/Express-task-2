@@ -3,6 +3,7 @@ const socket = require('socket.io');
 const path = require('path');
 const cors = require('cors');
 const mongoose = require('mongoose');
+const helmet = require('helmet');
 
 const testimonialsRoutes = require('./routes/testimonials.routes');
 const seatsRoutes = require('./routes/seats.routes');
@@ -15,6 +16,7 @@ app.use(express.json());
 app.use(cors({
   "origin": "http://localhost:3000",
 }));
+app.use(helmet());
 
 app.use((req, res, next) => {
   req.io = io;
