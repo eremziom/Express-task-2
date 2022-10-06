@@ -24,7 +24,7 @@
   },
   "homepage": "https://github.com/eremziom/Express-task-2#readme",
   "devDependencies": {
-    "snyk": "^1.279.1"
+    "snyk": "^1.996.0"
   },
   "dependencies": {
     "cors": "^2.8.5",
